@@ -3,7 +3,8 @@ const operatorButtons = document.querySelectorAll(".operator-button");
 const clearButton = document.querySelector(".clear-button");
 const equalsButton = document.querySelector(".equals-button");
 const decimalButton = document.querySelector(".decimal-button");
-
+const screenText = document.querySelector(".screen .text");
+const allButtons = document.querySelectorAll("button");
 
 const operators = {
     add: (a, b) => a + b,
@@ -95,3 +96,24 @@ equalsButton.addEventListener('click', () => {
         operation.numberA = (operate(operation.numberA, operation.numberB, operation.operator));
     }
 })
+
+allButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        screenText.textContent = `${operation.numberA} ${operatorToSymbol(operation.operator)} ${operation.numberB}`;
+    })
+})
+
+const operatorToSymbol = function(op) {
+    switch (op) {
+        case "":
+            break;
+        case "add":
+            return '+';
+        case "subtract":
+            return '-';
+        case "multiply":
+            return '×';
+        case "divide":
+            return '+';
+    }
+}

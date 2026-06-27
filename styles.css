@@ -33,6 +33,8 @@ body {
     justify-content: end;
     align-items: center;
     padding: 10px;
+
+    overflow-x: auto;
 }
 
 .calculator .buttons {
@@ -68,8 +70,8 @@ body {
     margin-bottom: 50px;
 }
 
-#cancel-button {
-    flex-grow: 3;
+#clear-button {
+    flex-grow: 3.45;
 }
 
 #divide-button {
