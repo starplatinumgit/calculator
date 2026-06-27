@@ -45,23 +45,26 @@ numberButtons.forEach(btn => {
 })
 
 decimalButton.addEventListener('click', () => {
-    
+    //the logic for if a decimal is allowed
     const clickDecimal = function(number) {
-        if (isEmpty(number)) {
-            number = "0.";
+        if (isEmpty(operation[number])) {
+            operation[number] = "0.";
+            console.log("EMPTY");
         }
         else {
-            if (!(number.includes('.'))) {
-                number += '.';
+            if (!(operation[number].includes('.'))) {
+                operation[number] += '.';
+                console.log("INCLUDES");
             }
+            console.log("ELSE");
         }
     }
-    
+    //checking to put decimal on first or second number
     if (isEmpty(operation.operator)) {
-        clickDecimal(operation.numberA)
+        clickDecimal("numberA")
     }
     else if (!(isEmpty(operation.operator))) {
-        clickDecimal(operation.numberB);
+        clickDecimal("numberB");
     }
 })
 
