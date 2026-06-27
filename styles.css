@@ -67,3 +67,11 @@ body {
 .header {
     margin-bottom: 50px;
 }
+
+#cancel-button {
+    flex-grow: 3;
+}
+
+#divide-button {
+    flex-grow: 1;
+}
