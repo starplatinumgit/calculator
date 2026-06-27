@@ -2,6 +2,7 @@ const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
 const clearButton = document.querySelector(".clear-button");
 const equalsButton = document.querySelector(".equals-button");
+const decimalButton = document.querySelector(".decimal-button");
 
 
 const operators = {
@@ -27,8 +28,8 @@ const operation = {
 
 function operate(a, b, operator) {
     operation.wipeCurrentOperation();
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
     return `${operators[operator](a, b)}`;
 }
 
@@ -40,11 +41,31 @@ numberButtons.forEach(btn => {
         else if (!(isEmpty(operation.operator))) {
             operation.numberB += e.target.value;
         }
-        else {
-            console.log("error!");
-        }
     })
 })
+
+decimalButton.addEventListener('click', () => {
+    
+    const clickDecimal = function(number) {
+        if (isEmpty(number)) {
+            number = "0.";
+        }
+        else {
+            if (!(number.includes('.'))) {
+                number += '.';
+            }
+        }
+    }
+    
+    if (isEmpty(operation.operator)) {
+        clickDecimal(operation.numberA)
+    }
+    else if (!(isEmpty(operation.operator))) {
+        clickDecimal(operation.numberB);
+    }
+})
+
+
 
 operatorButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
