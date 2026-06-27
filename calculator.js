@@ -1,6 +1,7 @@
 const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
 const clearButton = document.querySelector(".clear-button");
+const equalsButton = document.querySelector(".equals-button");
 
 
 const operators = {
@@ -52,7 +53,6 @@ operatorButtons.forEach(btn => {
         }
         else if (!(isEmpty(operation.numberA)) && isEmpty(operation.numberB)) {
             operation.operator = e.target.value;
-            console.log("triggered");
         }
         else if (!(isEmpty(operation.numberB)) && !(isEmpty(operation.numberA))) {
             operation.numberA = (operate(operation.numberA, operation.numberB, operation.operator));
@@ -64,4 +64,10 @@ operatorButtons.forEach(btn => {
 clearButton.addEventListener('click', () => {
     operation.wipeCurrentOperation();
     operation.numberA = "";
+})
+
+equalsButton.addEventListener('click', () => {
+    if(!(isEmpty(operation.numberB)) && !(isEmpty(operation.numberA))) {
+        operation.numberA = (operate(operation.numberA, operation.numberB, operation.operator));
+    }
 })
