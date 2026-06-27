@@ -1,5 +1,7 @@
 const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
+const clearButton = document.querySelector(".clear-button");
+
 
 const operators = {
     add: (a, b) => a + b,
@@ -14,9 +16,8 @@ const operation = {
     numberA: "",
     numberB: "",
     operator: "",
-    pastResult: "",
+    
     wipeCurrentOperation: function() {
-        operation.numberA = "";
         operation.numberB = "";
         operation.operator = "";
     }
@@ -24,7 +25,10 @@ const operation = {
 
 
 function operate(a, b, operator) {
-    return operators[operator](a, b);
+    operation.wipeCurrentOperation();
+    a = parseInt(a);
+    b = parseInt(b);
+    return `${operators[operator](a, b)}`;
 }
 
 numberButtons.forEach(btn => {
@@ -43,23 +47,21 @@ numberButtons.forEach(btn => {
 
 operatorButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        if (isEmpty(operation.numberA) && isEmpty(operation.pastResult)) {
-            console.log("1");
+        if (isEmpty(operation.numberA)) {
             return;
         }
         else if (!(isEmpty(operation.numberA)) && isEmpty(operation.numberB)) {
-            console.log("2");
             operation.operator = e.target.value;
             console.log("triggered");
         }
         else if (!(isEmpty(operation.numberB)) && !(isEmpty(operation.numberA))) {
-            console.log("3");
-            operation.pastResult = (operate(operation.numberA, operation.numberB, operation.operator));
-            operation.wipeCurrentOperation();
-        }
-        else {
-            console.log("4");
+            operation.numberA = (operate(operation.numberA, operation.numberB, operation.operator));
+            operation.operator = e.target.value;
         }
     })
 })
 
+clearButton.addEventListener('click', () => {
+    operation.wipeCurrentOperation();
+    operation.numberA = "";
+})
