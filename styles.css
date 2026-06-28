@@ -60,10 +60,14 @@ body {
     background-color: #CEC87D;
     border: none;
     border-radius: 5px;
-    box-shadow: 5px 5px 10px;
+    box-shadow: 0px 6px 0px #717058;
     font-size: xx-large;
     
     flex: 1;
+}
+
+.button:active {
+    transform: translateY(4px);
 }
 
 .header {
