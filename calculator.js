@@ -12,7 +12,7 @@ const operators = {
     add: (a, b) => a + b,
     subtract: (a, b) => a - b,
     multiply: (a, b) => a * b, 
-    divide: (a, b) => (b === 0) ? NaN : (a / b),
+    divide: (a, b) => (b === 0) ? NaN : (a / b).toFixed(3),
 }
 
 const isEmpty = (str) => str.length === 0;
@@ -78,6 +78,7 @@ const keyActions = {
     '/': () => handleOperatorInput('divide'),
     'Backspace': () => handleBackspaceInput(),
     'Enter': () => handleEnterInput(),
+    'c': () => handleClearInput(),
 }
 
 decimalButton.addEventListener('click', () => {
@@ -127,9 +128,13 @@ const handleOperatorInput = function(e) {
 }
 
 clearButton.addEventListener('click', () => {
+    handleClearInput();
+})
+
+const handleClearInput = function() {
     operation.wipeCurrentOperation();
     operation.numberA = "";
-})
+}
 
 equalsButton.addEventListener('click', () => {
     handleEnterInput();
