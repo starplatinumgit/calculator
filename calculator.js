@@ -43,11 +43,20 @@ numberButtons.forEach(btn => {
 
 const handleNumberInput = function(e) {
     if (isEmpty(operation.operator)) {
+        if (operation.numberA === '0') {
+            operation.numberA = e;
+        }
+        else {
             operation.numberA += e;
-
+        }
         }
     else if (!(isEmpty(operation.operator))) {
-        operation.numberB += e;
+        if (operation.numberB === '0') {
+            operation.numberB = e;
+        }
+        else {
+            operation.numberB += e;
+        }
     }
     
 }
