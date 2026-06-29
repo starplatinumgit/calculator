@@ -42,16 +42,12 @@ numberButtons.forEach(btn => {
 })
 
 const handleNumberInput = function(e) {
-    console.log(e);
     if (isEmpty(operation.operator)) {
             operation.numberA += e;
-                console.log("hi");
 
         }
     else if (!(isEmpty(operation.operator))) {
         operation.numberB += e;
-            console.log("hi2");
-
     }
     
 }
@@ -81,6 +77,7 @@ const keyActions = {
     'x': () => handleOperatorInput('multiply'),
     '/': () => handleOperatorInput('divide'),
     'Backspace': () => handleBackspaceInput(),
+    'Enter': () => handleEnterInput(),
 }
 
 decimalButton.addEventListener('click', () => {
@@ -135,10 +132,15 @@ clearButton.addEventListener('click', () => {
 })
 
 equalsButton.addEventListener('click', () => {
-    if(!(isEmpty(operation.numberB)) && !(isEmpty(operation.numberA))) {
-        operation.numberA = (operate(operation.numberA, operation.numberB, operation.operator));
-    }
+    handleEnterInput();
 })
+
+const handleEnterInput = function() {
+if(!(isEmpty(operation.numberB)) && !(isEmpty(operation.numberA))) {
+        operation.numberA = (operate(operation.numberA, operation.numberB, operation.operator));
+        
+    }
+}
 
 backspaceButton.addEventListener('click', () => {
     handleBackspaceInput();
@@ -168,6 +170,7 @@ const playClickSound = function() {
 allButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
         printScreenPlaySound();
+        event.target.blur();
     })
 })
 
