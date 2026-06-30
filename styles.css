@@ -85,3 +85,7 @@ button:active {
 #divide-button {
     flex-grow: 1;
 }
+
+button {
+    font: inherit
+}
